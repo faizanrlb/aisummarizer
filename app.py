@@ -1,8 +1,26 @@
 
+
+
 import streamlit as st
 import re
 from transformers import pipeline
 
+# 2. Load the model
+@st.cache_resource
+def load_model():
+    return pipeline(
+        "summarization",
+        model="sshleifer/distilbart-cnn-12-6",
+        framework="pt",
+        device=-1
+    )
+
+summarizer = load_model()
+
+# 3. Your remaining app code
+st.title("AI Text Summarizer")
+
+# Continue with your input box, buttons, and summarization logic...
 # PAGE CONFIGURATION
 st.set_page_config(
     page_title="AI Text Summarizer",
@@ -210,4 +228,5 @@ st.divider()
 st.caption(
     "Developed by Faizan Rasheed | ID: B02-0923-000031"
 )
+
 
